@@ -1,27 +1,30 @@
-const express = require('express');
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+const port = process.env.PORT || 3000;
 
-// Gör att servern kan läsa JSON från inkommande POST-anrop
-app.use(express.json());
+// Middleware
+app.use(bodyParser.json());
 
-// Root-endpoint för att verifiera att servern är igång (valfritt)
-app.get('/', (req, res) => {
-  res.send('✅ Proxy-servern är igång!');
+// Startpunkt
+app.get("/", (req, res) => {
+  res.send("Casova Proxy är igång.");
 });
 
-// Webhook-mottagare: ta emot redirect_url och returnera det
-app.post('/', (req, res) => {
+// POST-endpoint för webhook
+app.post("/", (req, res) => {
+  console.log("Mottaget body:", req.body); // Logga inkommande data
+
   const redirectUrl = req.body.redirect_url;
 
-  if (redirectUrl) {
-    res.status(200).json({ redirect_url: redirectUrl });
-  } else {
-    res.status(400).json({ error: 'Ingen redirect_url hittades i anropet.' });
+  if (!redirectUrl) {
+    return res.status(400).json({ error: "Ingen redirect_url hittades i anropet." });
   }
+
+  res.redirect(302, redirectUrl);
 });
 
-// Kör på Render (Render använder PORT-variabel)
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servern körs på port ${PORT}`);
+// Starta servern
+app.listen(port, () => {
+  console.log(`Servern körs på port ${port}`);
 });
