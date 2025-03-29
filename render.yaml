@@ -4,6 +4,6 @@ services:
     env: node
     plan: free
     buildCommand: yarn
-    startCommand: yarn start
+    startCommand: node index.js
     autoDeploy: true
     branch: main
