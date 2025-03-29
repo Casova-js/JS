@@ -1,30 +1,28 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 
-// Middleware
 app.use(bodyParser.json());
 
-// Startpunkt
-app.get("/", (req, res) => {
-  res.send("Casova Proxy är igång.");
-});
+app.post('/', (req, res) => {
+  try {
+    const redirectUrl = req.body.customData?.redirect_url;
 
-// POST-endpoint för webhook
-app.post("/", (req, res) => {
-  console.log("Mottaget body:", req.body); // Logga inkommande data
+    if (!redirectUrl) {
+      console.log('Ingen redirect_url hittades i anropet:', req.body);
+      return res.status(400).json({ error: 'Ingen redirect_url hittades i anropet.' });
+    }
 
-  const redirectUrl = req.body.redirect_url;
+    console.log('Redirect URL mottagen:', redirectUrl);
+    res.status(200).json({ redirect_url: redirectUrl });
 
-  if (!redirectUrl) {
-    return res.status(400).json({ error: "Ingen redirect_url hittades i anropet." });
+  } catch (error) {
+    console.error('Ett fel uppstod:', error);
+    res.status(500).json({ error: 'Serverfel vid bearbetning av anropet.' });
   }
-
-  res.redirect(302, redirectUrl);
 });
 
-// Starta servern
 app.listen(port, () => {
   console.log(`Servern körs på port ${port}`);
 });
