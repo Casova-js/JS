@@ -1,15 +1,16 @@
 {
   "name": "casova-proxy",
   "version": "1.0.0",
-  "description": "En enkel proxy för att ta emot redirect_url och returnera den till GoHighLevel",
+  "description": "Webhook-proxy för Casova mellanlandningssida",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.4"
+    "express": "^4.18.4",
+    "body-parser": "^1.20.2"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
