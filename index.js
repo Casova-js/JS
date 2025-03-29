@@ -32,7 +32,7 @@ app.post('/', async (req, res) => {
       return res.status(404).json({ error: 'Ingen redirect_url hittades i GHL.' });
     }
 
-    const redirectField = contact.customField.find(f => f.name === 'redirect_url');
+    const redirectField = contact.customField.find(f => f.fieldKey === 'contact.redirect_url');
     const redirectUrl = redirectField?.value;
 
     if (!redirectUrl) {
