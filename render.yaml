@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: proxy-server
+    name: casova-proxy
     env: node
     plan: free
-    buildCommand: "npm install"
-    startCommand: "node index.js"
+    buildCommand: yarn
+    startCommand: yarn start
     autoDeploy: true
+    branch: main
