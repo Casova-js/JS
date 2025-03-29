@@ -17,7 +17,7 @@ app.post('/', async (req, res) => {
       `https://api.gohighlevel.com/v1/contacts/search?email=${encodeURIComponent(email)}`,
       {
         headers: {
-          Authorization: `Bearer DIN_API_NYCKEL`, // byt ut till din faktiska GHL API-nyckel
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2NhdGlvbl9pZCI6ImUyc3VKckp0NEE1OXA0UWFoaDFZIiwiY29tcGFueV9pZCI6IkRHbkVsM1B5c3hHYzQxanZ5MWw4IiwidmVyc2lvbiI6MSwiaWF0IjoxNzAzNzczMzM1NjE5LCJzdWIiOiJ1c2VyX2lkIn0.TAJ03agrZf8SWTOFhMzHk1mqWUa-1LfE50fpgFqOxCg`, // byt ut till din faktiska GHL API-nyckel
         },
       }
     );
