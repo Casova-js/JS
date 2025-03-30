@@ -29,6 +29,8 @@ app.post('/', async (req, res) => {
         }
       }
     );
+    
+    console.log('🔎 Fullt kontaktobjekt från GHL:', JSON.stringify(contactRes.data, null, 2));
 
     const contact = contactRes.data.contact;
 
