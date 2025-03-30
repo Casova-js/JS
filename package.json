@@ -1,14 +1,15 @@
 {
   "name": "casova-proxy",
   "version": "1.0.0",
-  "description": "Proxy för att hämta redirect_url från GHL-webhook",
+  "description": "Proxy för att hämta redirect_url från GoHighLevel",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "axios": "^1.6.0",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
   }
 }
