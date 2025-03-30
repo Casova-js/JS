@@ -39,8 +39,9 @@ app.post('/', async (req, res) => {
     }
 
     console.log('Alla custom fields från kontakten:', contact.customField);
-    const redirectField = contact.customField.find(f => f.name === 'redirect_url');
-    const redirectUrl = redirectField?.value;
+    const redirectField = contact.customField.find(f => f.id === 'hOyTCTsfNEcGBiYeLSE2');
+const redirectUrl = redirectField?.value;
+
 
     if (!redirectUrl) {
       return res.status(404).json({ error: 'Ingen redirect_url hittades i kontakten.' });
